@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://by8723ljg546d"]
+
+[ext_resource type="Texture2D" uid="uid://dyka5gsqbcuvv" path="res://Arts/Torako_Koshi.png" id="1_n8ljo"]
+[ext_resource type="Script" path="res://Characters/koshitan.gd" id="1_ruc5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qeri6"]
+size = Vector2(94, 100)
+
+[node name="Koshitan" type="CharacterBody2D"]
+script = ExtResource("1_ruc5k")
+speed = 500.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_n8ljo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_qeri6")
