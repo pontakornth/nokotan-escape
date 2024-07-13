@@ -42,7 +42,7 @@ initial_speed = 200.0
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_0ff1x")
 animation = &"danger"
-frame_progress = 0.941952
+frame_progress = 0.192573
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)

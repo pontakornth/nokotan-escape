@@ -3,6 +3,8 @@ extends Node
 var crisp_rice_count: int = 0
 
 signal update_crisp_rice_count(new_count: int)
+signal spawn_deer()
+signal delete_deer()
 
 func get_crisp_rice():
 	# This one is for Koshitan only

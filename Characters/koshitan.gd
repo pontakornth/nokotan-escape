@@ -25,10 +25,15 @@ func _physics_process(delta):
 func _input(event: InputEvent):
 	if event.is_action_pressed("speed"):
 		if DataManager.crisp_rice_count > 0:
-			speed = 700
+			sprite.play("run")
+			speed = 900
 			DataManager.spend_crisp_rice()
 			power_timer.start()
-
+	if event.is_action_pressed("delete_deer"):
+		if DataManager.crisp_rice_count > 0:
+			DataManager.spend_crisp_rice()
+			DataManager.delete_deer.emit()
 
 func _on_power_timer_timeout():
 	speed = initial_speed
+	sprite.play("default")

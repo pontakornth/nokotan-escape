@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlf86bykckrrv"]
+[gd_scene load_steps=8 format=3 uid="uid://dlf86bykckrrv"]
 
 [ext_resource type="PackedScene" uid="uid://by8723ljg546d" path="res://Characters/koshitan.tscn" id="1_58nx2"]
 [ext_resource type="Script" path="res://System/world.gd" id="1_c57f0"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://cc883mhlanqax" path="res://Arts/grass.png" id="3_p7k7h"]
 [ext_resource type="PackedScene" uid="uid://dh1jjhmj2xqcr" path="res://Objects/crisp_rice.tscn" id="5_wv0t0"]
 [ext_resource type="PackedScene" uid="uid://decdgqd3wxja5" path="res://System/game_ui.tscn" id="6_7tg1d"]
+[ext_resource type="PackedScene" uid="uid://qiue12eb5ci3" path="res://Characters/deer.tscn" id="7_8lfo2"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_c57f0")
 spawn_item = ExtResource("5_wv0t0")
+deer = ExtResource("7_8lfo2")
 
 [node name="Koshitan" parent="." instance=ExtResource("1_58nx2")]
 position = Vector2(-194, 282)
@@ -43,5 +45,8 @@ position = Vector2(-529, 184)
 [node name="ItemSpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Deer" parent="." instance=ExtResource("7_8lfo2")]
+position = Vector2(101, 432)
 
 [connection signal="timeout" from="ItemSpawnTimer" to="." method="_on_item_spawn_timer_timeout"]

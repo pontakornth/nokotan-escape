@@ -35,9 +35,18 @@ func _on_area_2d_body_entered(body):
 		get_tree().change_scene_to_file("res://System/game_over.tscn")
 		
 func get_power_up():
-	speed = 900
-	power_timer.start()
+	# random behavior
+	var result := randi_range(0, 2)
+	if result == 0:
+		DataManager.spawn_deer.emit()
+	elif result == 1:
+		accelerate()
 
+func accelerate():
+	speed = 900
+	sprite.play("danger")
+	power_timer.start()
 
 func _on_power_timer_timeout():
 	speed = initial_speed
+	sprite.play("default")
