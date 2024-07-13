@@ -12,6 +12,7 @@ func _ready():
 	DataManager.spawn_deer.connect(spawn_deer)
 	DataManager.delete_deer.connect(delete_deer)
 	DataManager.launch_boomerang.connect(launch_boomerang)
+	DataManager.launch_bullets.connect(launch_bullets)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,18 +41,20 @@ func _on_item_spawn_timer_timeout():
 	add_child(item)
 	
 func spawn_deer():
-	var deer_position: Vector2 = koshitan.position
-	while true:
-		deer_position = Vector2(
-			randf_range(koshitan.position.x - spawn_radius, koshitan.position.x + spawn_radius),
-			randf_range(koshitan.position.y - spawn_radius, koshitan.position.y + spawn_radius),
-			
-		)
-		if deer_position.distance_to(koshitan.position) >= 300:
-			break
-	var actual_deer = deer.instantiate() as Node2D
-	actual_deer.position = deer_position
-	add_child(actual_deer)
+	var repetition = randi_range(0, 5)
+	for x in range(repetition):
+		var deer_position: Vector2 = koshitan.position
+		while true:
+			deer_position = Vector2(
+				randf_range(koshitan.position.x - spawn_radius, koshitan.position.x + spawn_radius),
+				randf_range(koshitan.position.y - spawn_radius, koshitan.position.y + spawn_radius),
+				
+			)
+			if deer_position.distance_to(koshitan.position) >= 300:
+				break
+		var actual_deer = deer.instantiate() as Node2D
+		actual_deer.position = deer_position
+		add_child(actual_deer)
 
 func delete_deer():
 	var all_deer_nodes := get_tree().get_nodes_in_group("deer")
@@ -61,6 +64,8 @@ func delete_deer():
 func _input(event: InputEvent):
 	if event.is_action_pressed("debug_deer"):
 		spawn_deer()
+	if event.is_action_pressed("debug_bullets"):
+		launch_bullets()
 
 func launch_boomerang():
 	for i in range(8):
@@ -69,3 +74,13 @@ func launch_boomerang():
 		actual_boomerang.position = koshitan.position
 		add_child(actual_boomerang)
 		
+func launch_bullets():
+	for i in range(8):
+		# TODO: Change bullets
+		var actual_boomerang = boomerang.instantiate() as Boomerang
+		actual_boomerang.is_corrupted = true
+		actual_boomerang.direction = Vector2.from_angle(deg_to_rad(45 * i))
+		actual_boomerang.deceleration = 0
+		actual_boomerang.speed = 500
+		actual_boomerang.position = koshitan.position + actual_boomerang.direction * -450
+		add_child(actual_boomerang)

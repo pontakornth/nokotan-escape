@@ -6,6 +6,7 @@ signal update_crisp_rice_count(new_count: int)
 signal spawn_deer()
 signal delete_deer()
 signal launch_boomerang()
+signal launch_bullets()
 
 func get_crisp_rice():
 	# This one is for Koshitan only

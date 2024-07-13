@@ -41,3 +41,8 @@ func _input(event: InputEvent):
 func _on_power_timer_timeout():
 	speed = initial_speed
 	sprite.play("default")
+
+
+func _on_area_2d_body_entered(body):
+	if body is Boomerang:
+		get_tree().change_scene_to_file("res://System/game_over.tscn")

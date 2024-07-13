@@ -49,6 +49,8 @@ func get_power_up():
 		DataManager.spawn_deer.emit()
 	elif result == 1:
 		accelerate()
+	elif result == 2:
+		DataManager.launch_bullets.emit()
 
 func accelerate():
 	speed = 900
