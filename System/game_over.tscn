@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://cua5kldm4lpip"]
+[gd_scene load_steps=2 format=3 uid="uid://cua5kldm4lpip"]
+
+[ext_resource type="Script" path="res://System/game_over.gd" id="1_rkfkd"]
 
 [node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_rkfkd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -27,3 +30,9 @@ theme_override_font_sizes/font_size = 72
 text = "YOU DEER"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play again"
+
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
