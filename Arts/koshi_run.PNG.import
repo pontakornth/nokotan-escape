@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5l8a3aqyjn1b"
-path="res://.godot/imported/crisp-rice.png-f1aa17ffdb4f5cafaaf30b1941841a33.ctex"
+uid="uid://caluog7c8weld"
+path="res://.godot/imported/koshi_run.PNG-fcb000e3041d511aefef2185d9816ec5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arts/crisp-rice.png"
-dest_files=["res://.godot/imported/crisp-rice.png-f1aa17ffdb4f5cafaaf30b1941841a33.ctex"]
+source_file="res://Arts/koshi_run.PNG"
+dest_files=["res://.godot/imported/koshi_run.PNG-fcb000e3041d511aefef2185d9816ec5.ctex"]
 
 [params]
 

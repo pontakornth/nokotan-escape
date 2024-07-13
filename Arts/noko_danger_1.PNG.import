@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5l8a3aqyjn1b"
-path="res://.godot/imported/crisp-rice.png-f1aa17ffdb4f5cafaaf30b1941841a33.ctex"
+uid="uid://cirxct2hgelqj"
+path="res://.godot/imported/noko_danger_1.PNG-bdbaabbc74719fa91bf1495889851b43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arts/crisp-rice.png"
-dest_files=["res://.godot/imported/crisp-rice.png-f1aa17ffdb4f5cafaaf30b1941841a33.ctex"]
+source_file="res://Arts/noko_danger_1.PNG"
+dest_files=["res://.godot/imported/noko_danger_1.PNG-bdbaabbc74719fa91bf1495889851b43.ctex"]
 
 [params]
 

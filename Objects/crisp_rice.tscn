@@ -1,16 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dh1jjhmj2xqcr"]
 
-[ext_resource type="Texture2D" uid="uid://cj2f32eg86scg" path="res://Arts/crisp-rice.png" id="1_00cg6"]
+[ext_resource type="Texture2D" uid="uid://c5l8a3aqyjn1b" path="res://Arts/crisp-rice.png" id="1_00cg6"]
 [ext_resource type="Script" path="res://Objects/crisp_rice.gd" id="1_s8cyg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ispnj"]
-radius = 58.0086
+radius = 64.7765
 
 [node name="CrispRice" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_s8cyg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -2)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_00cg6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

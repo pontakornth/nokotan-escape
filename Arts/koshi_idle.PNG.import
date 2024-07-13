@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5l8a3aqyjn1b"
-path="res://.godot/imported/crisp-rice.png-f1aa17ffdb4f5cafaaf30b1941841a33.ctex"
+uid="uid://51bs25q41nhi"
+path="res://.godot/imported/koshi_idle.PNG-787e0ba49750bd9ad60f9ba5c807fe79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arts/crisp-rice.png"
-dest_files=["res://.godot/imported/crisp-rice.png-f1aa17ffdb4f5cafaaf30b1941841a33.ctex"]
+source_file="res://Arts/koshi_idle.PNG"
+dest_files=["res://.godot/imported/koshi_idle.PNG-787e0ba49750bd9ad60f9ba5c807fe79.ctex"]
 
 [params]
 

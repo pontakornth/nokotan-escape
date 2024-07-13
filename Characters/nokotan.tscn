@@ -1,7 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://djr3t0fe5rjt"]
+[gd_scene load_steps=8 format=3 uid="uid://djr3t0fe5rjt"]
 
-[ext_resource type="Texture2D" uid="uid://bl25msvt4ud10" path="res://Arts/nokotan.jpg" id="1_8vgd3"]
 [ext_resource type="Script" path="res://Characters/nokotan.gd" id="1_s5qma"]
+[ext_resource type="Texture2D" uid="uid://bq13kllv7fgkn" path="res://Arts/noko_normal.PNG" id="2_3gmn3"]
+[ext_resource type="Texture2D" uid="uid://cirxct2hgelqj" path="res://Arts/noko_danger_1.PNG" id="2_6wwko"]
+[ext_resource type="Texture2D" uid="uid://euu2fw0neoot" path="res://Arts/noko_danger_2.PNG" id="3_mglbq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ff1x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6wwko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mglbq")
+}],
+"loop": true,
+"name": &"danger",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3gmn3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6h7eg"]
 size = Vector2(86, 87)
@@ -14,9 +38,11 @@ collision_mask = 0
 script = ExtResource("1_s5qma")
 initial_speed = 200.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.17, 0.17)
-texture = ExtResource("1_8vgd3")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.28, 0.28)
+sprite_frames = SubResource("SpriteFrames_0ff1x")
+animation = &"danger"
+frame_progress = 0.596364
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
