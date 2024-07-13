@@ -16,7 +16,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"danger",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -42,19 +42,25 @@ initial_speed = 200.0
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_0ff1x")
 animation = &"danger"
-frame_progress = 0.192573
+frame_progress = 0.014246
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6h7eg")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_7y274")
 
 [node name="PowerTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PowerTimer" to="." method="_on_power_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

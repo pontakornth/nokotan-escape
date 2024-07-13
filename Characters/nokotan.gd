@@ -8,6 +8,8 @@ var speed = initial_speed
 var koshitan: Koshitan
 var chasing_koshitan := true
 @onready var power_timer = $PowerTimer
+@onready var stun_timer = $StunTimer
+
 
 func _ready():
 	# Parent of Nokotan is the World
@@ -21,6 +23,8 @@ func _physics_process(delta):
 	if chasing_koshitan:
 		chase_koshitan()
 	sprite.flip_h = velocity.x > 0
+	if stun_timer.time_left > 0:
+		velocity = Vector2.ZERO
 	move_and_slide()
 
 
@@ -33,6 +37,10 @@ func _on_area_2d_body_entered(body):
 	# Get game over if it is Koshitan
 	if body is Koshitan:
 		get_tree().change_scene_to_file("res://System/game_over.tscn")
+	if body is Boomerang:
+		stun_timer.start()
+		sprite.modulate = Color.DIM_GRAY
+		body.queue_free()
 		
 func get_power_up():
 	# random behavior
@@ -50,3 +58,7 @@ func accelerate():
 func _on_power_timer_timeout():
 	speed = initial_speed
 	sprite.play("default")
+
+
+func _on_stun_timer_timeout():
+	sprite.modulate = Color.WHITE

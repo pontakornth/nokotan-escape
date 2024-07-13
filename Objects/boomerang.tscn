@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c72wunye544ay"]
+
+[ext_resource type="Texture2D" uid="uid://dmgus0gg7ddfo" path="res://Arts/boomerang_1.PNG" id="1_day3b"]
+[ext_resource type="Script" path="res://Objects/boomerang.gd" id="1_dvq1v"]
+[ext_resource type="Texture2D" uid="uid://dxdumh6x76ulm" path="res://Arts/boomerang_2.PNG" id="2_ertqd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6nkf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_day3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ertqd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4mxt5"]
+radius = 38.0526
+
+[node name="Boomerang" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_dvq1v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.28, 0.28)
+sprite_frames = SubResource("SpriteFrames_a6nkf")
+autoplay = "default"
+frame = 1
+frame_progress = 0.941589
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4mxt5")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

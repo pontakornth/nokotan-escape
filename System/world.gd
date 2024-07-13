@@ -4,12 +4,14 @@ extends Node2D
 
 @export var spawn_item: PackedScene
 @export var deer: PackedScene
+@export var boomerang: PackedScene
 @export var spawn_radius := 500
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DataManager.spawn_deer.connect(spawn_deer)
 	DataManager.delete_deer.connect(delete_deer)
+	DataManager.launch_boomerang.connect(launch_boomerang)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,3 +61,11 @@ func delete_deer():
 func _input(event: InputEvent):
 	if event.is_action_pressed("debug_deer"):
 		spawn_deer()
+
+func launch_boomerang():
+	for i in range(8):
+		var actual_boomerang = boomerang.instantiate() as Boomerang
+		actual_boomerang.direction = Vector2.from_angle(deg_to_rad(45 * i))
+		actual_boomerang.position = koshitan.position
+		add_child(actual_boomerang)
+		

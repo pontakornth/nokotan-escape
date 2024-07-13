@@ -33,6 +33,10 @@ func _input(event: InputEvent):
 		if DataManager.crisp_rice_count > 0:
 			DataManager.spend_crisp_rice()
 			DataManager.delete_deer.emit()
+	if event.is_action_pressed("boomerang"):
+		if DataManager.crisp_rice_count > 0:
+			DataManager.spend_crisp_rice()
+			DataManager.launch_boomerang.emit()
 
 func _on_power_timer_timeout():
 	speed = initial_speed
