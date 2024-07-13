@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Nokotan
 
 @export var initial_speed := 450.0
+@onready var sprite = $AnimatedSprite2D
+
 var speed = initial_speed
 var koshitan: Koshitan
 var chasing_koshitan := true
@@ -18,6 +20,7 @@ func _ready():
 func _physics_process(delta):
 	if chasing_koshitan:
 		chase_koshitan()
+	sprite.flip_h = velocity.x > 0
 	move_and_slide()
 
 

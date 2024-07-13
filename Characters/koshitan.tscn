@@ -29,7 +29,7 @@ size = Vector2(94, 100)
 [node name="Koshitan" type="CharacterBody2D"]
 script = ExtResource("1_ruc5k")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.28, 0.28)
 sprite_frames = SubResource("SpriteFrames_0vxu2")
 autoplay = "default"
