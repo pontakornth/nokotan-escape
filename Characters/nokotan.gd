@@ -3,6 +3,8 @@ class_name Nokotan
 
 @export var initial_speed := 450.0
 @onready var sprite = $AnimatedSprite2D
+@onready var http_request = $HTTPRequest
+
 
 var speed = initial_speed
 var koshitan: Koshitan
@@ -17,11 +19,16 @@ func _ready():
 	for child in get_parent().get_children():
 		if child is Koshitan:
 			koshitan = child
-			
+
+func _input(event: InputEvent):
+	if event.is_action_pressed("debug_switch_ai"):
+		chasing_koshitan = !chasing_koshitan
 
 func _physics_process(delta):
 	if chasing_koshitan:
 		chase_koshitan()
+	else:
+		chase_crisp_rice()
 	sprite.flip_h = velocity.x > 0
 	if stun_timer.time_left > 0:
 		velocity = Vector2.ZERO
@@ -31,6 +38,26 @@ func _physics_process(delta):
 func chase_koshitan():
 	if koshitan != null:
 		velocity = position.direction_to(koshitan.position) * speed
+		
+func chase_crisp_rice():
+	var all_crisp_rices = get_tree().get_nodes_in_group("crisp")
+	var all_positions = []
+	for c in all_crisp_rices:
+		all_positions.append((c as Node2D).position)
+	if all_positions.is_empty():
+		# Stop
+		velocity = Vector2.ZERO
+	else:
+		# Find the nearest position
+		# TODO: Optimize 
+		var closest_position = all_positions[0]
+		var shortest_distance = position.distance_to(closest_position)
+		for point in all_positions:
+			var current_distance := position.distance_to(point)
+			if current_distance < current_distance:
+				closest_position = point
+				shortest_distance = current_distance
+		velocity = position.direction_to(closest_position) * speed
 	
 
 func _on_area_2d_body_entered(body):
@@ -45,6 +72,8 @@ func _on_area_2d_body_entered(body):
 func get_power_up():
 	# random behavior
 	var result := randi_range(0, 2)
+	# TODO: Update URL
+	http_request.request("http://localhost:5173/api/move",PackedStringArray(),HTTPClient.METHOD_POST)
 	if result == 0:
 		DataManager.spawn_deer.emit()
 	elif result == 1:

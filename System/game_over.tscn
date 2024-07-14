@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cua5kldm4lpip"]
+[gd_scene load_steps=3 format=3 uid="uid://cua5kldm4lpip"]
 
 [ext_resource type="Script" path="res://System/game_over.gd" id="1_rkfkd"]
+[ext_resource type="Texture2D" uid="uid://c6w2rtjjspici" path="res://Arts/YOU_DEER.png" id="2_82cko"]
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_rkfkd")
@@ -24,12 +25,24 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 72
-text = "YOU DEER"
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/CenterContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -571.5
+offset_top = -372.0
+offset_right = 577.5
+offset_bottom = 267.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_82cko")
+expand_mode = 3
 
 [node name="PlayAgain" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2

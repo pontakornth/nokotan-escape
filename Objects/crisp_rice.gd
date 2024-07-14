@@ -1,5 +1,6 @@
 extends Area2D
 class_name CrispRice
+@onready var http_request = $HTTPRequest
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,3 +21,7 @@ func _on_body_entered(body):
 	if body is Nokotan:
 		body.get_power_up()
 		queue_free()
+
+
+func _on_http_request_request_completed(result, response_code, headers, body):
+	pass # Replace with function body.

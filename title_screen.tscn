@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvwy0s4a72oaa"]
+
+[ext_resource type="Script" path="res://title_screen.gd" id="1_arcu3"]
+[ext_resource type="Texture2D" uid="uid://cc883mhlanqax" path="res://Arts/grass.png" id="1_j82lp"]
+[ext_resource type="Texture2D" uid="uid://dnnwr2mgsy31" path="res://Arts/Nokorun Logo.png" id="2_2onij"]
+
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource("1_arcu3")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_j82lp")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 420.0
+grow_horizontal = 2
+texture = ExtResource("2_2onij")
+expand_mode = 3
+
+[node name="Button" type="Button" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 91.0
+offset_right = 59.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Play the game"
+
+[connection signal="pressed" from="Background/Button" to="." method="_on_button_pressed"]

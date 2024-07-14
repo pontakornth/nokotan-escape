@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlf86bykckrrv"]
+[gd_scene load_steps=10 format=3 uid="uid://dlf86bykckrrv"]
 
 [ext_resource type="PackedScene" uid="uid://by8723ljg546d" path="res://Characters/koshitan.tscn" id="1_58nx2"]
 [ext_resource type="Script" path="res://System/world.gd" id="1_c57f0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://decdgqd3wxja5" path="res://System/game_ui.tscn" id="6_7tg1d"]
 [ext_resource type="PackedScene" uid="uid://qiue12eb5ci3" path="res://Characters/deer.tscn" id="7_8lfo2"]
 [ext_resource type="PackedScene" uid="uid://c72wunye544ay" path="res://Objects/boomerang.tscn" id="8_5jkse"]
+[ext_resource type="AudioStream" uid="uid://dfhbkpcg51db0" path="res://Musics/shikanokonoko.mp3" id="9_ibj1d"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_c57f0")
@@ -57,5 +58,9 @@ position = Vector2(-548, 459)
 [node name="Boomerang2" parent="." instance=ExtResource("8_5jkse")]
 position = Vector2(-424, 1)
 is_corrupted = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ibj1d")
+autoplay = true
 
 [connection signal="timeout" from="ItemSpawnTimer" to="." method="_on_item_spawn_timer_timeout"]
