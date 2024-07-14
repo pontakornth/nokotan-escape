@@ -8,6 +8,8 @@ signal delete_deer()
 signal launch_boomerang()
 signal launch_bullets()
 
+const AI_URL = 'http://localhost:5173/api/move'
+
 func get_crisp_rice():
 	# This one is for Koshitan only
 	crisp_rice_count += 1

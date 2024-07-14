@@ -12,4 +12,5 @@ func _process(delta):
 
 
 func _on_play_again_pressed():
+	DataManager.crisp_rice_count = 0
 	get_tree().change_scene_to_file("res://System/world.tscn")
