@@ -5,13 +5,14 @@ class_name Nokotan
 @onready var sprite = $AnimatedSprite2D
 @onready var crispy_request = $CrispyRequest
 
-var latest_timestamp: int = 0
+var latest_timestamp: int = -1
 var speed = initial_speed
 var koshitan: Koshitan
 var chasing_koshitan := true
 var should_accelerate := false
 @onready var power_timer = $PowerTimer
 @onready var stun_timer = $StunTimer
+@onready var ai_request = $AIRequest
 
 
 func _ready():
@@ -74,7 +75,7 @@ func get_power_up():
 	# random behavior
 	var result := randi_range(0, 2)
 	# TODO: Update URL
-	crispy_request.request("http://localhost:5173/api/move",PackedStringArray(),HTTPClient.METHOD_POST)
+	#crispy_request.request("http://localhost:5173/api/move",PackedStringArray(),HTTPClient.METHOD_POST)
 	if result == 0:
 		DataManager.spawn_deer.emit()
 	elif result == 1:
@@ -98,15 +99,14 @@ func _on_stun_timer_timeout():
 
 func _on_ai_request_request_completed(result, response_code, headers, body):
 	# TODO: Change URL and AI
-	if result != HTTPRequest.RESULT_SUCCESS:
-		return
-	if response_code >= 400 and response_code <= 599:
-		return
 	var json = JSON.parse_string(body.get_string_from_utf8())
-	if latest_timestamp <= json["timestamp"]:
+	print(json)
+	if latest_timestamp <= json["timestamp"] and latest_timestamp > 0:
 		return
+	latest_timestamp = json["timestamp"]
 	# Change AI
 	var current_ai = json["ai"]
+	print(current_ai)
 	if current_ai == 1:
 		chasing_koshitan = true
 	elif current_ai == 2:
@@ -119,3 +119,8 @@ func _on_ai_request_request_completed(result, response_code, headers, body):
 		DataManager.spawn_deer.emit()
 	elif current_skill == 3:
 		DataManager.launch_bullets.emit()
+
+
+func _on_ai_timer_timeout():
+	ai_request.request(DataManager.AI_URL, [], HTTPClient.METHOD_GET)
+	print("Submit request")
