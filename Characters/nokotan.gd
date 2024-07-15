@@ -25,6 +25,8 @@ func _ready():
 func _input(event: InputEvent):
 	if event.is_action_pressed("debug_switch_ai"):
 		chasing_koshitan = !chasing_koshitan
+	if event.is_action_pressed("debug_accel"):
+		accelerate()
 
 func _physics_process(delta):
 	if chasing_koshitan:
@@ -65,7 +67,7 @@ func chase_crisp_rice():
 func _on_area_2d_body_entered(body):
 	# Get game over if it is Koshitan
 	if body is Koshitan:
-		get_tree().change_scene_to_file("res://System/game_over.tscn")
+		get_tree().change_scene_to_f1ile("res://System/game_over.tscn")
 	if body is Boomerang:
 		stun_timer.start()
 		sprite.modulate = Color.DIM_GRAY
@@ -99,26 +101,27 @@ func _on_stun_timer_timeout():
 
 func _on_ai_request_request_completed(result, response_code, headers, body):
 	# TODO: Change URL and AI
-	var json = JSON.parse_string(body.get_string_from_utf8())
-	print(json)
-	if latest_timestamp <= json["timestamp"] and latest_timestamp > 0:
-		return
-	latest_timestamp = json["timestamp"]
-	# Change AI
-	var current_ai = json["ai"]
-	print(current_ai)
-	if current_ai == 1:
-		chasing_koshitan = true
-	elif current_ai == 2:
-		chasing_koshitan = false
-	
-	var current_skill = json["skill"]
-	if current_skill == 1:
-		accelerate()
-	elif current_skill == 2:
-		DataManager.spawn_deer.emit()
-	elif current_skill == 3:
-		DataManager.launch_bullets.emit()
+	pass
+	#var json = JSON.parse_string(body.get_string_from_utf8())
+	#print(json)
+	#if latest_timestamp <= json["timestamp"] and latest_timestamp > 0:
+		#return
+	#latest_timestamp = json["timestamp"]
+	## Change AI
+	#var current_ai = json["ai"]
+	#print(current_ai)
+	#if current_ai == 1:
+		#chasing_koshitan = true
+	#elif current_ai == 2:
+		#chasing_koshitan = false
+	#
+	#var current_skill = json["skill"]
+	#if current_skill == 1:
+		#accelerate()
+	#elif current_skill == 2:
+		#DataManager.spawn_deer.emit()
+	#elif current_skill == 3:
+		#DataManager.launch_bullets.emit()
 
 
 func _on_ai_timer_timeout():
